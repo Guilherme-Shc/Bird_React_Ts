@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import DataBase from './Database';
 import Errors from './Errors';
+import Logged from './Logged';
 
 
 function App() {
@@ -36,21 +37,23 @@ const handleSubmit = (event: any) => {
       setErrorMessages({ msg: 'uname', message:Errors().uname})
     }
 }
-
+const logo = require('./img/logo.png')
 const renderForm = (
-  <div className=''>
+  <div className='text-gray-600 flex w-min p-5 justify-center flex-col align-middle text-center'>
+      <img src={logo} alt="panda Logo" className='w-50'/>
+      <div className='text-white drop-shadow-tiktokStyle text-5xl px-5 pb-7'>Sign In</div>
       <form onSubmit={handleSubmit}>
         <div className=''>
           <label>Username </label>
-          <input type='text' name='uname' required />
+          <input type='text' name='uname' required  className='rounded'/>
           {renderErrorMsg('uname')}
         </div>
         <div className=''>
           <label>Password </label>
-          <input type="password" name='pass' required/>
+          <input type="password" name='pass' required className='rounded'/>
           {renderErrorMsg('pass')}
         </div>
-        <div className=''>
+        <div className='bg-blue-400/40 m-2  mx-16 rounded hover:bg-blue-500/80 ease-in-out duration-300'>
           <input type="submit" />
         </div>
       </form>
@@ -58,10 +61,9 @@ const renderForm = (
 )
 
   return (
-    <div className=''>
-      <div className=''>
-        <div className=''>Sign In</div>
-        {isSubmited ? <div>Logged in</div> : renderForm}
+    <div className='bg-indigo-200 w-screen h-screen flex justify-center items-center m-auto'>
+      <div className='bg-cyan-100/60 w-max shadow-xl flex justify-center'>
+        {isSubmited ? <Logged></Logged> : renderForm}
       </div>
     </div>
   );
